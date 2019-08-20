@@ -6,13 +6,12 @@ from .models import  BankMerch
 from .serializer import MerchSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
 #........
-def home(request):
-    tmpl_vars = {'form': PostForm()}
-    return render(request, 'app/templates/index.html', tmpl_vars)
 
 class MerchList(APIView):
     def get(self, request, format=None):
@@ -58,3 +57,21 @@ class User(APIView):
         """
         usernames = [user.username for user in User.objects.all()]
         return Response(usernames)
+
+class MerchDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get_merch(self, pk):
+        try:
+            return MoringaMerch.objects.get(pk=pk)
+        except MoringaMerch.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        merch = self.get_merch(pk)
+        serializers = MerchSerializer(merch)
+        return Response(serializers.data)
+
+    def delete(self, request, pk, format=None):
+        merch = self.get_merch(pk)
+        merch.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

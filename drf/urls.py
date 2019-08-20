@@ -14,13 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url , include
+from rest_framework.authtoken.views import obtain_auth_token
 from django.contrib.auth.models import User
 from django.contrib import admin
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('app.urls')),
-    url(r'^api-auth/', include('rest_framework.urls'))
+    url(r'^api-token-auth/', obtain_auth_token)
+    # url(r'^api/merch/$', views.MerchList.as_view())
     
 
 ]
