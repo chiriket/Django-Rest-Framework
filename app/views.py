@@ -38,7 +38,7 @@ def get_transaction():
    url = 'http://127.0.0.1:8000/api/merch/'
    response = requests.get(url)
 
-   transcription = response.json()
+   transaction = response.json()
 
    return transaction
 
