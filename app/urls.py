@@ -6,8 +6,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # url(r'^$', views.MerchList.as_view()),
+    url('^$',views.index, name = 'index'),
     url(r'api/merch/merch-id/(?P<pk>[0-9]+)/$',
         views.MerchDescription.as_view()),
-    url(r'^api/merch/$', views.MerchList.as_view())
+    url(r'^api/merch/$', views.MerchList.as_view()),
+   
     
 ]

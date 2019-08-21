@@ -12,6 +12,35 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 #........
+def index(request):
+    title = 'Home'
+    # bank = Bank.objects.all()
+   
+    return render(request, 'index.html', {'title':title})
+
+
+def bank(request):
+   url = 'http://127.0.0.1:8000/api/merch/'
+   response = requests.get(url)
+
+   transaction = response.json()
+    
+   return render(request, 'bank.html',{
+       'search': transaction['searchedByName']
+     
+   })
+
+def get_transaction():
+   '''
+   Fetches and returns transcription from api
+   '''
+
+   url = 'http://127.0.0.1:8000/api/merch/'
+   response = requests.get(url)
+
+   transcription = response.json()
+
+   return transaction
 
 class MerchList(APIView):
     def get(self, request, format=None):

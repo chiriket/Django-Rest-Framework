@@ -1,0 +1,23 @@
+{% load bootstrap4 %}
+{% load staticfiles %}
+ {% block styles %}
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/proj.css' %}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/css/mdb.min.css" rel="stylesheet">
+    {% endblock %}
+  {% for i in search %}
+     
+
+    <div class="card">
+        <div class="card bg-light text-dark">
+        <div class="card-head"><h2><strong> {{ i.type }} </strong></h2></div>
+        <div class="card-body"><span><li> {{ i.description }} - Ksh.{{ i.balance}}</li></span></div>
+      </div>
+      
+
+  {% endfor %}
