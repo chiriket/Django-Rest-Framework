@@ -8,6 +8,7 @@ from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+import requests
 
 
 # Create your views here.
@@ -26,7 +27,7 @@ def bank(request):
    transaction = response.json()
     
    return render(request, 'bank.html',{
-       'search': transaction['searchedByName']
+    #    'search': transaction'searchedByName')
      
    })
 
